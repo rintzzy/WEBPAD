@@ -1,0 +1,10 @@
+CACHE MANIFEST
+
+CACHE:
+       img/webpad.png
+	   css/bootstrap.css
+	   js/jquery-min.js
+	   js/mainapp.js
+	   
+NETWORK:	   
+         *

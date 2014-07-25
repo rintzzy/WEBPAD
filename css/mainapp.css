@@ -1,0 +1,222 @@
+/* CSS for WebPad : a web text editor*/
+/* Author : Somnath Mukherjee */
+/* Contact me : somnathbm0@gmail.com */
+   
+@font-face{
+            font-family:"Open Sans Light";
+            src:url("../fonts/OpenSans-Light-webfont.eot");
+            src:url("../fonts/OpenSans-Light-webfont.eot?#iefix") format("embedded-opentype"),
+                url("../fonts/OpenSans-Light-webfont.woff") format("woff"),
+                url("../fonts/OpenSans-Light-webfont.ttf")  format("truetype"),
+                url("../fonts/OpenSans-Light-webfont.svg")  format("svg");
+            font-weight:normal;
+        }
+@font-face{
+		    font-family:"Autour One";
+			src:url("../fonts/AutourOne-Regular.otf") format("otf");
+			font-weight:normal;
+		}
+		
+   body{
+	  background-color:#155c66;
+	  background:-webkit-radial-gradient(circle,#2293a3,#1e7784,#4b1097) repeat;
+	  background:-moz-radial-gradient(circle,#2293a3,#1e7784,#4b1097) repeat;
+	  background:-ms-radial-gradient(circle,#2293a3,#1e7784,#4b1097) repeat;
+	  background:radial-gradient(circle,#2293a3,#1e7784,#4b1097) repeat;
+	  margin:0;
+	  -webkit-perspective:800px;
+	  -webkit-transform-style:preserve-3d;
+	  -moz-perspective:800px;
+	  -moz-transform-style:preserve-3d;
+	  -ms-perspective:800px;
+	  -ms-transform-style:preserve-3d;
+	   perspective:800px;
+	   transform-style:preserve-3d;
+	}
+/* Editing area of the editor*/	
+    #wrapper{
+      width:52.13%;
+      height:370px;
+	  margin:50px auto 10px auto;
+	  padding:5px;
+      background-color:#fff;
+	  color:#333;
+	  font-size:1.2em;
+	  font-family:'courier new';
+	  border:none;
+      border-top-left-radius:8px;
+	  border-bottom-left-radius:8px;
+	  border-bottom-right-radius:8px;
+	  display:block;
+	  position:relative;
+	  z-index:3;
+    }	  
+	#t_bar{
+	  width:130px;
+	  height:35px;
+	  background-color:hotpink;
+	  font-family:'Segoe UI Light','Open Sans Light';
+	  line-height:2;
+	  text-align:center;
+	  text-shadow:0.05em 0.05em 0em #333;
+	  color:#333;
+	  -webkit-font-smoothing:antialiased;
+	  position:relative;
+	  top:-415px;
+	  left:64.693%;
+	  border-top-right-radius:8px;
+	} 
+    #t_bar::before{
+      content:"";
+      width:0px;
+      height:0px;
+	  border-top:35px solid transparent;
+	  border-bottom:35px solid transparent;
+	  border-left:35px solid transparent;
+	  border-right:35px solid hotpink;
+	  opacity:0.5;
+	  position:absolute;
+	  top:0px;
+	  left:-70px;
+    } 
+/* Editing area ends here */
+/* -------------------------------------------------------------------------------------------------- */
+/* Virtual keypad */	
+    #osk_wrapper{
+      width:100%;
+      height:195px;
+	  margin:0 auto;
+	  padding:5px; /*content width:1140-(2*5)=1130px & height:185px */
+	  background-image:-webkit-linear-gradient(to bottom,#ddd,#aaa);
+	  background-image:-moz-linear-gradient(to bottom,#ddd,#aaa);
+	  background-image:-ms-linear-gradient(to bottom,#ddd,#aaa);
+      background-image:linear-gradient(to bottom,#ddd,#aaa);
+	  box-shadow:0em 0.0625em 0em #222;
+	  border-radius:2px;
+    }
+	.rotate-plus{
+	  -webkit-transform:rotateX(65deg);
+	  -moz-transform:rotateX(65deg);
+	  -ms-transform:rotateX(65deg);
+	  transform:rotateX(65deg);
+	  position:relative;
+	  top:-87px;
+	}
+	.leaderboard{
+	  background-image:url(../img/webpad.png);
+	}  
+	form{
+	  width:14.95%;
+	}
+	form,#osk_wrapper table{ /* force form & table to behave like inline-element */
+	  display:inline-block;
+	}
+    #osk_wrapper tr{
+      width:100%;
+    }	  
+    #osk_wrapper form input[type="button"]{ /* force button to behave like block element */
+      display:block;
+	  margin:0 auto;
+    }
+	#osk_wrapper form table tr:first-of-type,#osk_wrapper form table tr:nth-of-type(3),#osk_wrapper form table tr:last-of-type{ /* every row of same height */
+	  height:40px;
+	}
+	#align table,#texts table,#transforms table,#insert table{ /* force positioning to centre */
+      position:relative;
+	  left:16%;
+    }
+    #colors table{ /* positioning separately due to variable width of input colour across browsers */ 
+      position:relative;
+      left:12px;
+    }	  
+    .gutter-vertical{ /* gap between rows */
+	    height:5px;
+	}
+    .gutter-horizontal{ /* gap between columns */
+        width:5px;
+    }	
+    .keys{ /* my custom key class out-of-the-box*/
+      width:100px;
+	  height:40px;
+      border:none;
+	  border-radius:0;
+      background-image:-webkit-linear-gradient(-45deg,#444 50%,#393737 50%);
+	  background-image:-moz-linear-gradient(-45deg,#444 50%,#393737 50%);
+	  background-image:-ms-linear-gradient(-45deg,#444 50%,#393737 50%);
+	  background-image:linear-gradient(-45deg,#444 50%,#393737 50%);
+      color:#fff;
+	  font-size:1.2em;
+	  -webkit-font-smoothing:antialiased;
+	  -moz-font-smoothing:antialiased;
+	  text-align:center;
+    }
+	input.keys:hover{
+	  background-image:-webkit-linear-gradient(-45deg,#413e3e 50%,#302d2d 50%);
+	  background-image:-moz-linear-gradient(-45deg,#413e3e 50%,#302d2d 50%);
+	  background-image:-ms-linear-gradient(-45deg,#413e3e 50%,#302d2d 50%);
+	  background-image:linear-gradient(-45deg,#413e3e 50%,#302d2d 50%);
+	}  
+    	  
+	input.color{
+      width:50px;
+      height:50px;
+    }  
+	#osk_wrapper fieldset{ /* reverting original by overriding the style applied by Bootstrap */
+	  padding: .35em .625em .75em;
+      margin: 0 2px;
+      border: 1px dotted #a9a3a3;
+    }
+	#osk_wrapper legend{ /* reverting original by overriding the style applied by Bootstrap */
+	    padding: 0;
+        border: 0;
+		margin:0;
+		width:auto;
+		color:#333;
+		font-family:"Autour One";
+		font-weight:normal;
+		font-size:1.25em;
+	}	
+	#html-options{
+	    width:52px;
+		height:40px;
+		padding:0;
+		margin:0;
+        position:absolute;
+	}	
+	.contxt-btn{
+	    width:52px;
+		height:40px;
+		border:none;
+		margin-left:15px;
+		text-align:center;
+		background-color:#35badd;
+		color:#eee;	
+		font-size:1.13em;
+	}	
+	.contxt-btn:hover{
+	    background-color:#1da3c7;
+	}
+    		
+    .space{
+	    width:40px;
+	}	
+	input[type="color"]::-webkit-color-swatch{
+	    width:30px;
+		height:30px;
+	}	
+	input[type="color"]::-webkit-color-swatch-wrapper{
+	    padding:0;
+	}	
+	input[type="color"]::-webkit-color-swatch{
+	    border:none;
+	}
+    input[type="color"]::-moz-color-swatch-wrapper{
+	    padding:0;
+	}	
+	input[type="color"]::-moz-color-swatch{
+	    border:none;
+	}	
+    #underl9Form,#shadowform,#rotateForm,#skewForm,#translateForm{
+        width:100%;
+    }		
+	

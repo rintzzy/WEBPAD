@@ -1,9 +1,9 @@
-#### WEBPAD :: a web text editor
+#### WEBPAD :: a unique web text editor
 =================================
 
 1. What is it?
 
- -> It's rich text editor for web. 
+ -> It's rich text editor for web. It looks sexy.
 
 2. What's unique in it?
  

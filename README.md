@@ -1,7 +1,7 @@
 #### WEBPAD :: a unique web text editor
 =================================
 
-![SCREENSHOT] (https://github.com/rintzzy/WEBPAD/wp.png)
+![SCREENSHOT] (https://github.com/rintzzy/WEBPAD/blob/master/wp.png)
 
 1. What is it?
 

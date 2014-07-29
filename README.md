@@ -1,9 +1,11 @@
 #### WEBPAD :: a unique web text editor
 =================================
 
+![SCREENSHOT] (https://github.com/rintzzy/WEBPAD/wp.png)
+
 1. What is it?
 
- -> It's rich text editor for web. It looks sexy.
+ -> It's totally client based rich text editor for web. It looks sexy.
 
 2. What's unique in it?
  

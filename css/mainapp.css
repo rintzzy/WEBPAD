@@ -1,7 +1,9 @@
 /* CSS for WebPad : a web text editor*/
 /* Author : Somnath Mukherjee */
 /* Contact me : somnathbm0@gmail.com */
-   
+
+@import url('styles.less');   
+
 @font-face{
             font-family:"Open Sans Light";
             src:url("../fonts/OpenSans-Light-webfont.eot");
@@ -13,8 +15,13 @@
         }
 @font-face{
 		    font-family:"Autour One";
-			src:url("../fonts/AutourOne-Regular.otf") format("otf");
-			font-weight:normal;
+			src:url("../fonts/AutourOne-Regular-webfont.eot");
+            src:url("../fonts/AutourOne-Regular-webfont.eot?#iefix") format("embedded-opentype"),
+                url("../fonts/AutourOne-Regular-webfont.woff") format("woff"),
+				url("../fonts/AutourOne-Regular-webfont.woff2") format("woff2"),
+                url("../fonts/AutourOne-Regular-webfont.ttf")  format("truetype"),
+                url("../fonts/AutourOne-Regular-webfont.svg")  format("svg");
+            font-weight:normal;
 		}
 		
    body{
@@ -34,9 +41,10 @@
 	   transform-style:preserve-3d;
 	}
 /* Editing area of the editor*/	
-    #wrapper{
-      width:52.13%;
-      height:370px;
+    #editr{
+      width:100%;
+	  min-height:220px;
+	  height:320px;
 	  margin:50px auto 10px auto;
 	  padding:5px;
       background-color:#fff;
@@ -52,7 +60,7 @@
 	  z-index:3;
     }	  
 	#t_bar{
-	  width:130px;
+	  width:23.4%;
 	  height:35px;
 	  background-color:hotpink;
 	  font-family:'Segoe UI Light','Open Sans Light';
@@ -62,8 +70,8 @@
 	  color:#333;
 	  -webkit-font-smoothing:antialiased;
 	  position:relative;
-	  top:-415px;
-	  left:64.693%;
+	  top:-365px;
+	  left:76.693%;
 	  border-top-right-radius:8px;
 	} 
     #t_bar::before{
@@ -82,11 +90,10 @@
 /* Editing area ends here */
 /* -------------------------------------------------------------------------------------------------- */
 /* Virtual keypad */	
-    #osk_wrapper{
+    .osk_wrapper{
       width:100%;
-      height:195px;
-	  margin:0 auto;
-	  padding:5px; /*content width:1140-(2*5)=1130px & height:185px */
+      min-height:195px;
+	  padding:5px;
 	  background-image:-webkit-linear-gradient(to bottom,#ddd,#aaa);
 	  background-image:-moz-linear-gradient(to bottom,#ddd,#aaa);
 	  background-image:-ms-linear-gradient(to bottom,#ddd,#aaa);
@@ -105,50 +112,46 @@
 	.leaderboard{
 	  background-image:url(../img/webpad.png);
 	}  
-	form{
-	  width:14.95%;
+	.legend{
+		font:normal normal normal 1.242em/normal "Autour One";
 	}
-	form,#osk_wrapper table{ /* force form & table to behave like inline-element */
-	  display:inline-block;
+	
+	.info_export{
+		width:100%;
+		height:40px;
+		padding-top:10px;
+		box-sizing:content-box;
+		border-top:1px dotted darkslategray;
+		position:absolute;
+		bottom:-59px;
+		right:0px;
+	}	
+	.button-group{
+		padding-top:20px;
+		border-top:1px solid #e5e5e5;
+		box-sizing:content-box;
 	}
-    #osk_wrapper tr{
-      width:100%;
-    }	  
-    #osk_wrapper form input[type="button"]{ /* force button to behave like block element */
-      display:block;
-	  margin:0 auto;
-    }
-	#osk_wrapper form table tr:first-of-type,#osk_wrapper form table tr:nth-of-type(3),#osk_wrapper form table tr:last-of-type{ /* every row of same height */
-	  height:40px;
-	}
-	#align table,#texts table,#transforms table,#insert table{ /* force positioning to centre */
-      position:relative;
-	  left:16%;
-    }
-    #colors table{ /* positioning separately due to variable width of input colour across browsers */ 
-      position:relative;
-      left:12px;
-    }	  
-    .gutter-vertical{ /* gap between rows */
-	    height:5px;
-	}
-    .gutter-horizontal{ /* gap between columns */
-        width:5px;
-    }	
+	#fname, #fsize{padding:0 !important;}
+	#font label{min-width:45px;}
+	.form-group{margin-bottom:15px !important;}
     .keys{ /* my custom key class out-of-the-box*/
-      width:100px;
+      width:100%;
+	  min-height:25px;
 	  height:40px;
       border:none;
 	  border-radius:0;
+	  box-shadow:0 0.12em rgba(0,0,0,0.125);
       background-image:-webkit-linear-gradient(-45deg,#444 50%,#393737 50%);
 	  background-image:-moz-linear-gradient(-45deg,#444 50%,#393737 50%);
 	  background-image:-ms-linear-gradient(-45deg,#444 50%,#393737 50%);
 	  background-image:linear-gradient(-45deg,#444 50%,#393737 50%);
       color:#fff;
-	  font-size:1.2em;
+	  font-size:normal normal normal 1.2em/normal 'Segoe UI';
 	  -webkit-font-smoothing:antialiased;
 	  -moz-font-smoothing:antialiased;
 	  text-align:center;
+	  display:block;
+	  margin-bottom:5px;
     }
 	input.keys:hover{
 	  background-image:-webkit-linear-gradient(-45deg,#413e3e 50%,#302d2d 50%);
@@ -176,7 +179,7 @@
 		font-weight:normal;
 		font-size:1.25em;
 	}	
-	#html-options{
+	/*#html-options{
 	    width:52px;
 		height:40px;
 		padding:0;
@@ -196,7 +199,7 @@
 	.contxt-btn:hover{
 	    background-color:#1da3c7;
 	}
-    		
+    */		
     .space{
 	    width:40px;
 	}	

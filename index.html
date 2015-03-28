@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Webpad|RTF editor</title>
+	<meta name="author" content="somnath mukherjee(@rintzzy)" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+	<link rel="shortcut icon" href="img/favicon.png" />
+    <link rel="stylesheet" href="css/libcss/bootstrap.css" />
+	<link rel="stylesheet" href="css/libcss/animate.css" />
+    <link rel="stylesheet" href="css/libcss/font-awesome.css" />
+    <link rel="stylesheet" href="css/Peanut.css" />
+    <link rel="stylesheet" href="css/docs.css" />
+</head>
+<body>
+<a href="https://github.com/rintzzy" id="badge"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
+
+	<div class="container-fluid" id="wrapper">
+    	<div class="row">
+        	<div class="col-lg-6 col-md-6 col-sm-12">
+            	<div id="top-border"></div>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-lg-7 col-md-6 col-sm-7" id="thumbnail">
+            	<div class="col-lg-8 col-md-10 col-md-push-1 col-sm-offset-1" id="thumb_wrapper">
+            		<img src="img/wp.jpg" alt="wp" class="animated slideInLeft" />
+                </div>    
+            </div>
+            <div class="col-lg-5 col-md-6 col-sm-5 col-xs-12" id="desc">
+                	<div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12">
+                    	<h1>WebPad</h1>
+                    </div>
+                    <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-9 col-sm-offset-2 col-xs-12">
+                    	<h4 class="text-left">a rich text editor for web. Built using Javascript Rich Text API.</h4>
+                    </div>
+                    <div class="col-lg-6 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-8 col-sm-offset-2 col-xs-12">
+                    	<p class="text-left">works great on Mobile devices as well as Linux & Mac</p>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12" id="btn-wrapper">
+                    	<div class="col-lg-6 col-md-push-0">
+                        	<a href="https://github.com/rintzzy/webpad"><button type="button" class="btn btn-lg btn-primary"><i class="fa fa-download"></i>Download</button></a>
+                        </div>
+                        <div class="col-lg-6 col-md-push-0">
+                        	<a href="http://localhost/webpad/webpad.php"><button type="button" class="btn btn-lg btn-primary" id="fire_demo"><i class="fa fa-chevron-right"></i>Live Demo</button></a>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-lg-2 col-lg-push-5 col-md-2 col-md-push-5 col-sm-push-5" id="chevron">
+            	<i class="fa fa-4x fa-chevron-down"></i>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-lg-12" id="docs">
+            	<i class="fa fa-3x fa-book"></i><h1>Documentation</h1>
+                <div class="container">
+                	<div class="row">
+                    	<div class="col-lg-6">
+                        	<article>
+                            	<h2>What it is?</h2>
+                                <p>A rich text editor for web, based on the javascript Rich Text API.</p>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="row">
+                    	<div class="col-lg-12">
+                        	<article>
+                            	<h2>Why WebPad?</h2>
+                                <p>In the talking of rich text editor, GMail, Yahoo, Outlook pops up in our mind first. They are powerful. Also, there are some built-in rich text editor which
+    comes in as out-of-the-box package in some front-end frameworks(e,g. UIKit). While these rich text editors generally fulfils the most common often needed
+    formatting tasks such as, highlight portion of text, hyperlinking, inserting image etc., how about you'd want to transform your text? You can do it here.
+    Also you can export your draft to a html file.</p>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="row">
+                    	<div class="col-lg-6">
+                        	<article>
+                            	<h2>API used in this application</h2>
+                                <ul>
+                                	<li><a href="https://developer.mozilla.org/en/docs/Rich-Text_Editing_in_Mozilla">JavaScript's Rich Text API</a></li>
+                                    <li><a href="http://github.com/eligrey/FileSaver.js">W3C's saveAs() API</a></li>
+                                </ul>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="row">
+                    	<div class="col-lg-10">
+                        	<article>
+                            	<h2>Known issues</h2>
+                                <p>Google Chrome has not implemented CSS3 syntax of text-decoration property. That's why underline function won't work in Chrome.</p>
+                                <p><em>** A previous accessibility issue in Chrome has been fixed</em></p>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="row">
+                    	<div class="col-lg-8">
+                        	<h2>Future of this project</h2>
+                            <p>I have thoughts to modify it to be a full fledged editor with HTML and markdown syntax.</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                    	<div class="col-lg-4 col-lg-push-8" id="author">
+                        	<strong>WebPad is a project developed by <a href="http://github.com/rintzzy">@rintzzy</a></strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/lib/jquery/jquery-min.js"></script>
+	<script src="js/lib/jquery.mousewheel.min.js"></script>
+    <script type="text/javascript">	
+		$("#thumb_wrapper img").removeClass("animated").hover(function(e){$(this).css({"transform":"scale(1.125)","transition":"all 1s linear"});},function(e){$(this).css({"transform":"scale(1)","transition":"all 1s linear"});});
+		$("body").on("mousewheel",function(e,delta){
+			$("#docs").show(400);
+		});
+    </script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-// Main JS file for WebPad : a web text editor
+// Main JS file for WebPad : a rich text editor for web
 // Author : Somnath Mukherjee
 // Contact me : somnathbm0@gmail.com
  
@@ -6,49 +6,53 @@
     	
 //To enable editablity of iframe
 $(function(){
-  frames["wrapper"].document.designMode = "on";
-  
+  frames["editr"].document.designMode = "on";
 }); 
 
+//Spectrum color plugin use
+$("#color, #bgcolor, #selLineColor, #shadowColor").spectrum({
+	preferredFormat: "hsl",
+	showInput: true
+});
 //Align left
 $("#left_align").click(function(){
-   if($("#wrapper").contents().find("div").css("float") == "right" || $("#wrapper").contents().find("div").css("position") == "absolute"){
-     $("#wrapper").contents().find("div").css("position","relative").css("left","").css("right","").css("float","left");
+   if($("#editr").contents().find("div").css("float") == "right" || $("#editr").contents().find("div").css("position") == "absolute"){
+     $("#editr").contents().find("div").css("position","relative").css("left","").css("right","").css("float","left");
 	}	
-   frames["wrapper"].document.execCommand("formatblock",false,"div");	
-   $("#wrapper").contents().find("div").css("text-align","left");
+   frames["editr"].document.execCommand("formatblock",false,"div");	
+   $("#editr").contents().find("div").css("text-align","left");
 }); 
 //Align right
 $("#ri8_align").click(function(){
-   if(textbox.css("display") == "inline-block" || $("#wrapper").contents().find("div").css("float") == "left" ||
-      $("#wrapper").contents().find("div").css("position") == "absolute"){
-        $("#wrapper").contents().find("div").css("position","relative").css("left","").css("right","").css("float","right");
+   if($("#editr").contents().find("div").css("float") == "left" ||
+      $("#editr").contents().find("div").css("position") == "absolute"){
+        $("#editr").contents().find("div").css("position","relative").css("left","").css("right","").css("float","right");
 	}
-   frames["wrapper"].document.execCommand("formatblock",false,"div");	
-   $("#wrapper").contents().find("div").css("text-align","right");
+   frames["editr"].document.execCommand("formatblock",false,"div");	
+   $("#editr").contents().find("div").css("text-align","right");
 });
 //Align center
 $("#cntr_align").click(function(){
-     if($("#wrapper").contents().find("div").css("float") == "left" || $("#wrapper").contents().find("div").css("display") == "inline-block"){
-	    var width = $("#wrapper").contents().find("div").css("width").split("p"),
+     if($("#editr").contents().find("div").css("float") == "left" || $("#editr").contents().find("div").css("display") == "inline-block"){
+	    var width = $("#editr").contents().find("div").css("width").split("p"),
 		    center = parseInt((305+width[0]/2)-width[0]).toString() + "px";
-        $("#wrapper").contents().find("div").css("position","absolute").css("left",center);
+        $("#editr").contents().find("div").css("position","absolute").css("left",center);
 	 }
-	 else if($("#wrapper").contents().find("div").css("float") == "right"){
-	    var width = $("#wrapper").contents().find("div").css("width").split("p"),
+	 else if($("#editr").contents().find("div").css("float") == "right"){
+	    var width = $("#editr").contents().find("div").css("width").split("p"),
 		    center = parseInt((305+width[0]/2)-width[0]).toString() + "px";
 			console.log(center);
-        $("#wrapper").contents().find("div").css("position","absolute").css("right",center);
+        $("#editr").contents().find("div").css("position","absolute").css("right",center);
      }	
-	frames["wrapper"].document.execCommand("formatblock",false,"div");	
-   $("#wrapper").contents().find("div").css("text-align","center");	
+	frames["editr"].document.execCommand("formatblock",false,"div");	
+   $("#editr").contents().find("div").css("text-align","center");	
 });
 //font-family selection
 $("#fname").change(function(){
   for(var i = 1,len = this.options.length;i<=len;i++){
     if(this.options[i].selected){
 	    var fopt = this.options[i].value;
-		frames["wrapper"].document.execCommand("fontname",false,fopt);
+		frames["editr"].document.execCommand("fontname",false,fopt);
 	}
   }
 });
@@ -57,17 +61,17 @@ $("#fsize").change(function(){
   for(var i = 1,len = this.options.length;i<=len;i++){
     if(this.options[i].selected){
         var fsopt = this.options[i].value;
-        frames["wrapper"].document.execCommand("fontsize",false,fsopt);
+        frames["editr"].document.execCommand("fontsize",false,fsopt);
     }
   }
 });  
 //bold selection
 $("#bold").click(function(){
-  frames["wrapper"].document.execCommand("bold",false,null);
+  frames["editr"].document.execCommand("bold",false,null);
  });
 //italic selection
 $("#italic").click(function(){
-  frames["wrapper"].document.execCommand("italic",false,null);
+  frames["editr"].document.execCommand("italic",false,null);
  }); 
 //jQuery UI Dialog initialization
 $("#s").removeClass("ui-corner-all");
@@ -80,7 +84,7 @@ $("#s").removeClass("ui-corner-all");
 $("#u").button().click(function(){
   var lineStyle,lineColor;
   $("#underline").dialog("open");
-  frames["wrapper"].document.execCommand("formatblock",false,"div");
+  frames["editr"].document.execCommand("formatblock",false,"div");
   $("#selLineStyle").change(function(){
     for(var i = 1,len = this.options.length;i<=len;i++){
        if(this.options[i].selected){
@@ -94,12 +98,11 @@ $("#u").button().click(function(){
   $("#doApplyLine").click(function(){
     var ua = navigator.userAgent;
 	if(/Chrome/.test(ua)){  
-      $("#wrapper").contents().find("div").css("text-decoration-line","underline").css("text-decoration-style",lineStyle)
+      $("#editr").contents().find("div").css("text-decoration-line","underline").css("text-decoration-style",lineStyle)
 	  .css("text-decoration-color",lineColor); //won't render correctly. Bug '342126','347091'
 	}
 	else if(/Firefox/.test(ua)){
-	  $("#wrapper").contents().find("div").css("-moz-text-decoration-line","underline").css("-moz-text-decoration-style",lineStyle)
-	  .css("-moz-text-decoration-color",lineColor); 
+	  $("#editr").contents().find("div").css({"-moz-text-decoration-line":underline, "-moz-text-decoration-style":lineStyle, "-moz-text-decoration-color",lineColor}); 
 	  $("#underl9Form")[0].reset();
 	}  
     $("#underline").dialog("close");
@@ -109,7 +112,7 @@ $("#u").button().click(function(){
 $("#s").button().click(function(){
   var unitX = "px",unitY = "px",unitBlur = "px",ua = navigator.userAgent;
   $("#shadow").dialog("open");
-  frames["wrapper"].document.execCommand("formatblock",false,"div");
+  frames["editr"].document.execCommand("formatblock",false,"div");
   $("#unitOffsetX").change(function(){
     for(var i = 1,len = this.options.length;i<=len;i++){
        if(this.options[i].selected){
@@ -137,7 +140,7 @@ $("#s").button().click(function(){
                                 blur = $("input[name='shadowblur']").val(),
                                 clr = $("input[name='shadowcolor']").val(),
                                 shadowValue = x + unitX + " " + y + unitY + " " + blur + unitBlur + " " + clr;
-	                        $("#wrapper").contents().find("div").css("text-shadow",shadowValue);
+	                        $("#editr").contents().find("div").css("text-shadow",shadowValue);
 							$("#shadowform")[0].reset();  
 	                        $("#shadow").dialog("close");
                         });
@@ -146,28 +149,28 @@ $("#s").button().click(function(){
 //Link options
 $("#l").click(function(){
   var url = prompt("What link do you want to hypertext?","");
-  frames["wrapper"].document.execCommand("createlink",false,url);
+  frames["editr"].document.execCommand("createlink",false,url);
 });  
 //Rotation function
 $("#rotate").button().click(function(){
   $("#rotation").dialog("open");
-  frames["wrapper"].document.execCommand("formatblock",false,"div");
+  frames["editr"].document.execCommand("formatblock",false,"div");
   $("#doRotate").click(function(){
     var tx = $("#rotateVal").val(),
 	    rx = "rotate(" + tx + "deg" + ")";
-    $("#wrapper").contents().find("div").css("display","inline-block").css("transform",rx);
+    $("#editr").contents().find("div").css("display","inline-block").css("transform",rx);
 	$("#rotation").dialog("close");
   });
 });
 //Skew function
 $("#skewy").button().click(function(){
    $("#skew").dialog("open");
-   frames["wrapper"].document.execCommand("formatblock",false,"div");
+   frames["editr"].document.execCommand("formatblock",false,"div");
   $("#doSkew").click(function(){
     var tx = $("input[name='skew']").val();
 	var rx = tx + "deg";
 	
-    $("#wrapper").contents().find("div").css("transform","skew(" + rx + ")");
+    $("#editr").contents().find("div").css("transform","skew(" + rx + ")");
 	console.log(rx);
 	$("#skew").dialog("close");
   });
@@ -176,7 +179,7 @@ $("#skewy").button().click(function(){
 $("#translate").button().click(function(){
   var unitX = "px",unitY = "px";
   $("#translation").dialog("open");
-  frames["wrapper"].document.execCommand("formatblock",false,"div");
+  frames["editr"].document.execCommand("formatblock",false,"div");
   
   $("#trunitOffsetX").change(function(){
     for(var i = 1,len = this.options.length;i<=len;i++){
@@ -197,7 +200,7 @@ $("#translate").button().click(function(){
                             var x = $("input[name='transx']").val(),
                                 y = $("input[name='transy']").val(),
                                 translateValue = "translate(" + x + unitX + "," + y + unitY + ")";
-	                        $("#wrapper").contents().find("div").css("transform",translateValue);
+	                        $("#editr").contents().find("div").css("transform",translateValue);
 	                        $("#translation").dialog("close");
                         });							
  });  
@@ -205,31 +208,31 @@ $("#translate").button().click(function(){
   $("#insert_img").click(function(){
     var url = prompt("Type the full file path for your file",""),
 	    fullURL = "file:///" + url;
-   frames["wrapper"].document.execCommand("insertimage",false,fullURL); 
+   frames["editr"].document.execCommand("insertimage",false,fullURL); 
 });  
 //Ruler insert functions here
 $("#insert_ruler").click(function(){
-  frames["wrapper"].document.execCommand("inserthorizontalrule",false,null);
+  frames["editr"].document.execCommand("inserthorizontalrule",false,null);
 });  
 //Unordered List options
 $("#insert_list").click(function(){
-  frames["wrapper"].document.execCommand("insertunorderedlist",false,null);
+  frames["editr"].document.execCommand("insertunorderedlist",false,null);
 });  
 //listener for font color swatch	
 $("#color").change(function(){	
   var color = $(this).val();
-  frames["wrapper"].document.execCommand("forecolor",false,color);
+  frames["editr"].document.execCommand("forecolor",false,color);
 }); 
 //listener for background-color swatch
 $("#bgcolor").change(function(){
-  frames["wrapper"].document.execCommand("formatblock",false,"div");
+  frames["editr"].document.execCommand("formatblock",false,"div");
   var bgcolor = $(this).val();
-  $("#wrapper").contents().find("div").css("width","auto").css("display","inline-block").css("background-color",bgcolor);
+  $("#editr").contents().find("div").css("width","auto").css("display","inline-block").css("background-color",bgcolor);
 });
 //Info options
 $("#info").click(function(){
-   $("#osk_wrapper").toggleClass("rotate-plus");
-   $("#wrapper").toggleClass("leaderboard");
+   $(".osk_wrapper").toggleClass("rotate-plus");
+   $("#editr").toggleClass("leaderboard");
  });
 
 /* ---------------------------------------------------------------------------------------------------------
@@ -249,8 +252,8 @@ var
 		return view.Blob;
 	}
 
-	, html = $$("wrapper").contentDocument.body //getting reference to the body of the document that the iframe contains
-	, html_options_form = $$("html-options")
+	, html = $$("editr").contentDocument.body //getting reference to the body of the document that the iframe contains
+	, html_options_form = $$("export_form")
 
 	// Title guesser and document creator available at https://gist.github.com/1059648
 	, guess_title = function(doc) {
